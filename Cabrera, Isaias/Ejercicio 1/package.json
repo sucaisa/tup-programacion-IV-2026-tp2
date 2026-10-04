@@ -1,0 +1,14 @@
+{
+  "name": "tp2-ejercicio-1",
+  "version": "1.0.0",
+  "description": "API de administracion de rectangulos con MySQL y express-validator",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "mysql2": "^3.11.0"
+  }
+}

@@ -1,0 +1,54 @@
+### 1. Crear rectángulo regular (lado1 !== lado2)
+POST http://localhost:3001/rectangulos HTTP/1.1
+Content-Type: application/json
+
+{
+  "lado1": 10.5,
+  "lado2": 5.2
+}
+
+### 2. Crear caso cuadrado (lado1 === lado2)
+POST http://localhost:3001/rectangulos HTTP/1.1
+Content-Type: application/json
+
+{
+  "lado1": 8,
+  "lado2": 8
+}
+
+### 3. Error 400: Intento de inyectar perimetro desde el cliente (prohibido por consigna)
+POST http://localhost:3001/rectangulos HTTP/1.1
+Content-Type: application/json
+
+{
+  "lado1": 10,
+  "lado2": 5,
+  "perimetro": 30
+}
+
+### 4. Error 400: Lados menores o iguales a cero
+POST http://localhost:3001/rectangulos HTTP/1.1
+Content-Type: application/json
+
+{
+  "lado1": -3,
+  "lado2": 4
+}
+
+### 5. Consultar todos los rectángulos almacenados
+GET http://localhost:3001/rectangulos HTTP/1.1
+
+### 6. Consultar un rectángulo por ID
+GET http://localhost:3001/rectangulos/1 HTTP/1.1
+
+### 7. Modificar lados de un rectángulo
+PUT http://localhost:3001/rectangulos/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "lado1": 12,
+  "lado2": 6
+}
+
+### 8. Eliminar un rectángulo por ID
+DELETE http://localhost:3001/rectangulos/1 HTTP/1.1
