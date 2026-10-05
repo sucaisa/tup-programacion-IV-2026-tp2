@@ -1,0 +1,68 @@
+### 1. Consultar materias disponibles
+GET http://localhost:3003/materias HTTP/1.1
+
+### 2. Registrar calificaciones para un alumno en Programación IV (materia_id: 1)
+POST http://localhost:3003/calificaciones HTTP/1.1
+Content-Type: application/json
+
+{
+  "alumno": "Sofia Gomez",
+  "materia_id": 1,
+  "notas": [8, 9, 10]
+}
+
+### 3. Registrar al mismo alumno en otra materia (materia_id: 2) -> Permitido
+POST http://localhost:3003/calificaciones HTTP/1.1
+Content-Type: application/json
+
+{
+  "alumno": "Sofia Gomez",
+  "materia_id": 2,
+  "notas": [7, 8, 8]
+}
+
+### 4. Error 409: Registro duplicado para la misma combinación alumno-materia
+POST http://localhost:3003/calificaciones HTTP/1.1
+Content-Type: application/json
+
+{
+  "alumno": "Sofia Gomez",
+  "materia_id": 1,
+  "notas": [10, 10, 10]
+}
+
+### 5. Error 404: Materia inexistente en base de datos
+POST http://localhost:3003/calificaciones HTTP/1.1
+Content-Type: application/json
+
+{
+  "alumno": "Lucas Diaz",
+  "materia_id": 999,
+  "notas": [6, 7, 7]
+}
+
+### 6. Error 400: Cantidad de notas inválida (se exigen exactamente 3)
+POST http://localhost:3003/calificaciones HTTP/1.1
+Content-Type: application/json
+
+{
+  "alumno": "Lucas Diaz",
+  "materia_id": 1,
+  "notas": [7, 8]
+}
+
+### 7. Consultar todas las calificaciones con datos de materias y promedio calculado
+GET http://localhost:3003/calificaciones HTTP/1.1
+
+### 8. Modificar calificaciones de un registro existente
+PUT http://localhost:3003/calificaciones/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "alumno": "Sofia Gomez",
+  "materia_id": 1,
+  "notas": [9, 9, 10]
+}
+
+### 9. Eliminar un registro de calificación
+DELETE http://localhost:3003/calificaciones/1 HTTP/1.1
