@@ -1,0 +1,48 @@
+### 1. Crear tarea pendiente
+POST http://localhost:3002/tareas HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para el examen de Programación IV"
+}
+
+### 2. Crear tarea completada
+POST http://localhost:3002/tareas HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Configurar la base de datos MySQL",
+  "completada": true
+}
+
+### 3. Error 409: Duplicidad de nombre (control case-insensitive y espacios)
+POST http://localhost:3002/tareas HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "  estudiar para el examen de programación iv  "
+}
+
+### 4. Consultar todas las tareas
+GET http://localhost:3002/tareas HTTP/1.1
+
+### 5. Filtrar solo tareas completadas
+GET http://localhost:3002/tareas?completada=true HTTP/1.1
+
+### 6. Filtrar solo tareas pendientes
+GET http://localhost:3002/tareas?completada=false HTTP/1.1
+
+### 7. Error 400: Filtro con valor no admitido
+GET http://localhost:3002/tareas?completada=en_progreso HTTP/1.1
+
+### 8. Modificar una tarea existente
+PUT http://localhost:3002/tareas/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "Estudiar para el examen de Programación IV",
+  "completada": true
+}
+
+### 9. Eliminar tarea
+DELETE http://localhost:3002/tareas/1 HTTP/1.1
